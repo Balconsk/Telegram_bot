@@ -1,5 +1,8 @@
-from asyncio import sleep as async_sleep
 from aiogram import types, Dispatcher, filters
+from models.model_sqlite3 import DataBase
+from filters.admin_filter import IsAdmin
+
+database = DataBase()
 
 
 async def command_add_admin(msg: types.Message):
@@ -10,11 +13,12 @@ async def command_add_admin(msg: types.Message):
     except ValueError:
         await msg.answer("Incorrect user ID.")
         return None
-    with open('admin_list.txt', 'a') as file:
-        file.write(f',{admin_id}')
-    await msg.reply(f"User {admin_id}, now an administrator")
+    if database.add_admin(admin_id):
+        await msg.reply(f"User {admin_id}, now an administrator")
+    else:
+        await msg.reply(f"Error\n\nUser {admin_id} may already be an administrator")
 
 
 def register_command_add_admin(dp: Dispatcher):
-    dp.register_message_handler(command_add_admin, filters.IDFilter(user_id=5530490710), commands='add_admin')
-
+    dp.register_message_handler(command_add_admin, IsAdmin(),
+                                commands='add_admin')

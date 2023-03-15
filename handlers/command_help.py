@@ -4,9 +4,8 @@ command_text = """🔵 What am I?
 I am a bot that can generate responses to your queries.
 
 🔵 My available commands are:
-/img (query) - Generate image 🖼 (Doesn't work yet)
+/img (query) - Generate image 🖼 (one img = 500 tokens)
 /ask (query) - Send a text query. (Not working yet)
-/ts (request) - Shortening command /translate 
 """
 
 

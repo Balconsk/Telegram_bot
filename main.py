@@ -6,7 +6,6 @@ import registration
 
 bot = Bot(telegram_key)
 dp = Dispatcher(bot=bot)
-
 registration.all_registrations(dp)
 
 

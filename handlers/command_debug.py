@@ -1,7 +1,6 @@
 from asyncio import sleep as async_sleep
 from aiogram import types, Dispatcher
 
-# noinspection SpellCheckingInspection
 command_text = """This command is used for development.
 This message will be deleted after 15 seconds.
 🙂 User_id - {}
