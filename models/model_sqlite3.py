@@ -3,6 +3,7 @@ import sqlite3
 
 class DataBase:
     __instance = None
+<<<<<<< HEAD
     __connect = sqlite3.connect("this_database.db")
     __cursor = __connect.cursor()
     __cursor.execute("CREATE TABLE IF NOT EXISTS openai_logs \
@@ -10,15 +11,31 @@ class DataBase:
     __cursor.execute("CREATE TABLE IF NOT EXISTS admins_id (user_id INTEGER)")
     __cursor.execute("CREATE TABLE IF NOT EXISTS allowed_users (user_id INTEGER, token INTEGER)")
     __connect.commit()
+=======
+>>>>>>> 96c23cf (add readme and create funk create_database)
 
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
             cls.__instance = super().__new__(cls)
+<<<<<<< HEAD
+=======
+            cls.__connect = sqlite3.connect("this_database.db")
+            cls.__cursor = cls.__connect.cursor()
+>>>>>>> 96c23cf (add readme and create funk create_database)
         return cls.__instance
 
     def __del__(self):
         self.__connect.close()
 
+<<<<<<< HEAD
+=======
+    def create_database(self):
+        self.__cursor.execute("CREATE TABLE IF NOT EXISTS openai_logs \
+                    (user_id INTEGER, product TEXT, prompt TEXT, answer TEXT, tokens INTEGER, status INTEGER);")
+        self.__cursor.execute("CREATE TABLE IF NOT EXISTS admins_id (user_id INTEGER)")
+        self.__cursor.execute("CREATE TABLE IF NOT EXISTS allowed_users (user_id INTEGER, token INTEGER)")
+
+>>>>>>> 96c23cf (add readme and create funk create_database)
     def checking_user_in_table(self, user_id: int, table="allowed_users") -> bool:
         """Checking the availability of the user in the database"""
         sql = "SELECT user_id FROM table WHERE user_id == ?;"
@@ -101,3 +118,7 @@ class DataBase:
         self.__cursor.execute("INSERT INTO openai_logs VALUES(?,?,?,?,?,?)",
                               (user_id, product, prompt, answer, token, status))
         self.__connect.commit()
+<<<<<<< HEAD
+=======
+
+>>>>>>> 96c23cf (add readme and create funk create_database)
